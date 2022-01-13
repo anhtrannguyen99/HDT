@@ -1,5 +1,5 @@
 package Entity;
 
 public enum TypeQuestion {
-	CONVER, MULTIPLE, IMCOMPLETE;
+	Conservation, Incomplete, MultipleChoice;
 }

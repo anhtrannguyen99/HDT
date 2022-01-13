@@ -11,11 +11,14 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import Entity.Level;
+import Entity.Question;
+import Entity.QuestionList;
 import Entity.TypeQuestions;
 
 public class HandleFile {
 	
-	public String readFile(String url, String nameFile) throws IOException {
+	public String readFile(String url) throws IOException {
 		
 		// �?�?c dữ liệu từ File với Scanner
         FileInputStream fileInputStream = null;
@@ -23,11 +26,12 @@ public class HandleFile {
         List<String> s = new ArrayList<String>();
         
         try {
-            fileInputStream = new FileInputStream("D:\\hdt\\test.txt");
+            fileInputStream = new FileInputStream(url);
             bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
             String line = bufferedReader.readLine();
             while (line != null) {
                 s.add(line);
+                System.out.println(line);
 
                 line = bufferedReader.readLine();
             }
@@ -57,35 +61,20 @@ public class HandleFile {
 	String name="";
 	String muc = "";
 	int count=1;
-	ArrayList<TypeQuestions> s = new ArrayList<TypeQuestions>();
+//	ArrayList<TypeQuestions> s = new ArrayList<TypeQuestions>();
 
-	public ArrayList<TypeQuestions> listFilesForFolder(final File folder) {
-
-	    for (final File fileEntry : folder.listFiles()) {
+	public ArrayList<String> listFilesForFolder(final File folder) {
+		ArrayList<String> s = new ArrayList<String>();
+		for (final File fileEntry : folder.listFiles()) {
 	        if (fileEntry.isDirectory()) {
-	        	 if(!fileEntry.getName().equals("Easy") && 
-		           !fileEntry.getName().equals("High")) {
-	            name=fileEntry.getName();
-	            muc = "";
-		        }else {
-		           muc = fileEntry.getName();
-		        }
-	            listFilesForFolder(fileEntry);
-	           
-	            
+	           listFilesForFolder(fileEntry);
 	        } else 
 	        {
-//	        	TypeQuestions type = new TypeQuestions();
-//	        	type.setId(count++);
-//	        	type.setUrl(fileEntry.getName());
-//	        	type.setMuc(muc);
-//	        	type.setType(name);
-//	        	s.add(type);
-	        	
+	        	s.add(fileEntry.getPath());
 	        }
 	    }
-	    
 	    return s;
+	    
 	}
 	
 }

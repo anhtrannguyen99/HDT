@@ -4,11 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionList {
-	List<Question> listQuestion = new ArrayList<Question>();
+	private ArrayList<Question> listQuestion = new ArrayList<Question>();
 	
 	public void addQuestion(Question qes) {
 		listQuestion.add(qes);
 	}
+
+	public ArrayList<Question> getListQuestion() {
+		return listQuestion;
+	}
+
+	public void setListQuestion(ArrayList<Question> listQuestion) {
+		this.listQuestion = listQuestion;
+	}
+
+	public QuestionList(ArrayList<Question> listQuestion) {
+		super();
+		this.listQuestion = listQuestion;
+	}
+
+	public QuestionList() {
+		super();
+	}
+	
 	
 	
 }
