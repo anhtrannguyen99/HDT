@@ -1,7 +1,6 @@
 package Main;
 
-import java.sql.Connection;
-import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,6 +12,11 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import Entity.ConverAnswer;
+import Entity.IncompletedAnswer;
+import Entity.MultipleAnswer;
+import Entity.Question;
+import Entity.TypeQuestions;
 import HandleFile.HandleFile;
 
 
@@ -23,14 +27,21 @@ public class main {
  
 	public static void main(String args[]) throws IOException {
 
+		Scanner scanner = new Scanner(System.in);
 		HandleFile file = new HandleFile();
+		StringBuilder urlRoot = new StringBuilder("D:\\hdt\\E-sys");
+		//
+		ConverAnswer conAns = new ConverAnswer();
+		IncompletedAnswer incomAns = new IncompletedAnswer();
+		MultipleAnswer mulAns = new MultipleAnswer();
+		//
+		List<ConverAnswer> listConAns = new ArrayList<ConverAnswer>();
+		List<IncompletedAnswer> listIncomAns = new ArrayList<IncompletedAnswer>();
 		
-//		file.readFile("D:\\hdt\\", "test");
-		
-		final File folder = new File("D:\\hdt\\E-sys");
-		file.listFilesForFolder(folder);
 		
 		
-		 
-	 }
+		
+		
+	
+	}
 }

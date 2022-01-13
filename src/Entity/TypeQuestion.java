@@ -1,5 +1,5 @@
 package Entity;
 
-public class TypeQuestion {
-
+public enum TypeQuestion {
+	CONVER, MULTIPLE, IMCOMPLETE;
 }

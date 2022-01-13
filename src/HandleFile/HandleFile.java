@@ -11,6 +11,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import Entity.TypeQuestions;
+
 public class HandleFile {
 	
 	public String readFile(String url, String nameFile) throws IOException {
@@ -52,17 +54,38 @@ public class HandleFile {
 	        return "";
 	}
 	
-	
-	public void listFilesForFolder(final File folder) {
+	String name="";
+	String muc = "";
+	int count=1;
+	ArrayList<TypeQuestions> s = new ArrayList<TypeQuestions>();
+
+	public ArrayList<TypeQuestions> listFilesForFolder(final File folder) {
+
 	    for (final File fileEntry : folder.listFiles()) {
 	        if (fileEntry.isDirectory()) {
+	        	 if(!fileEntry.getName().equals("Easy") && 
+		           !fileEntry.getName().equals("High")) {
+	            name=fileEntry.getName();
+	            muc = "";
+		        }else {
+		           muc = fileEntry.getName();
+		        }
 	            listFilesForFolder(fileEntry);
-	        } else {
-	            System.out.println(fileEntry);
+	           
+	            
+	        } else 
+	        {
+//	        	TypeQuestions type = new TypeQuestions();
+//	        	type.setId(count++);
+//	        	type.setUrl(fileEntry.getName());
+//	        	type.setMuc(muc);
+//	        	type.setType(name);
+//	        	s.add(type);
+	        	
 	        }
 	    }
+	    
+	    return s;
 	}
-
-
-
+	
 }
