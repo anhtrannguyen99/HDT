@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+
 import Entity.ConverAnswer;
 import Entity.ConverQuestion;
 import Entity.ConverQuestionList;
@@ -23,6 +24,8 @@ import Entity.MultipleQuestion;
 import Entity.MultipleQuestionList;
 import Entity.Question;
 import Entity.QuestionList;
+import Entity.Result;
+import Entity.ResultList;
 import Entity.TypeQuestion;
 import Entity.TypeQuestions;
 import HandleFile.HandleFile;
@@ -37,12 +40,7 @@ public class main {
 		HandleFile file = new HandleFile();
 		String urlRoot = "D:\\hdt\\E-sys\\";
 		//
-		ConverAnswer conAns = new ConverAnswer();
-		IncompletedAnswer incomAns = new IncompletedAnswer();
-		MultipleAnswer mulAns = new MultipleAnswer();
-		//
-		List<ConverAnswer> listConAns = new ArrayList<ConverAnswer>();
-		List<IncompletedAnswer> listIncomAns = new ArrayList<IncompletedAnswer>();
+
 		
 		
 		MultipleQuestion mulQues = new MultipleQuestion();
@@ -55,7 +53,8 @@ public class main {
 		IncompleteQuestionList listIncompleteQuestion = new IncompleteQuestionList();
 		MultipleQuestionList listMulQuestion = new MultipleQuestionList();
 		
-		file.writeFile("", "test");
+		ResultList resultList = new ResultList();
+		
 		do {
 			System.out.print("Choose: ");
 			choose = scanner.nextInt(); 
@@ -73,7 +72,15 @@ public class main {
 					for(String s : urls) {
 						mulQues = file.readFileMul(s);
 						listMulQuestion.add(mulQues);
-						
+					}
+					
+					for(MultipleQuestion m : listMulQuestion.getMultipleQuestionList()) {
+						System.out.print("Chọn đáp án: ");
+						Result result = new Result();
+						result.setAnsCorrect(m.getAnsCorrect());
+						result.setPoint(10);
+						result.setChoose(scanner.nextLine());
+						resultList.add(result);
 					}
 				}break;
 				
@@ -98,6 +105,15 @@ public class main {
 						converQues = file.readFile(s) ;
 						listConverQuestion.add(converQues);
 					}
+					
+					for(ConverQuestion m : listConverQuestion.getConverQuestionList()) {
+						System.out.print("Chọn đáp án: ");
+						Result result = new Result();
+						result.setAnsCorrect(m.getAnsCorrect());
+						result.setPoint(10);
+						result.setChoose(scanner.nextLine());
+						resultList.add(result);
+					}
 
 					}break;
 					
@@ -120,6 +136,14 @@ public class main {
 								incompleQues = file.readFileIncomplete(url.toString());
 								listIncompleteQuestion.add(incompleQues);
 							}
+							for(IncompleteQuestion m : listIncompleteQuestion.getIncompleteQuestionList()) {
+								System.out.print("Chọn đáp án: ");
+								Result result = new Result();
+								result.setAnsCorrect(m.getAnsCorrect());
+								result.setPoint(10);
+								result.setChoose(scanner.nextLine());
+								resultList.add(result);
+							}
 						}
 						
 						break;
@@ -135,9 +159,35 @@ public class main {
 								incompleQues = file.readFileIncomplete(url.toString());
 								listIncompleteQuestion.add(incompleQues);
 							}
+							for(IncompleteQuestion m : listIncompleteQuestion.getIncompleteQuestionList()) {
+								System.out.print("Chọn đáp án: ");
+								Result result = new Result();
+								result.setAnsCorrect(m.getAnsCorrect());
+								result.setPoint(10);
+								result.setChoose(scanner.nextLine());
+								resultList.add(result);
+							}
 						}break;
 					}
-				}
+				}break;
+				
+				case 4: {
+					StringBuilder str = new StringBuilder("Ket Qua: \n");
+					for(Result r : resultList.getResults()) {
+						str.append(r.getChoose());
+						str.append("\t");
+						str.append(r.getAnsCorrect());
+						str.append("\t");
+						str.append(r.getPoint());
+						str.append("\n");
+						
+					}
+					
+					StringBuilder url = new StringBuilder(urlRoot);
+										
+					file.writeFile(url.toString(), "test");
+				}break;
+				
 					
 				
 		    }	
