@@ -24,6 +24,8 @@ import Entity.MultipleAnswerList;
 import Entity.MultipleQuestion;
 import Entity.Question;
 import Entity.QuestionList;
+import Entity.Result;
+import Entity.ResultList;
 import Entity.TypeQuestions;
 
 public class HandleFile {
@@ -201,10 +203,21 @@ public class HandleFile {
 	
 	
 	
-	public String writeFile(String url, String nameFile) throws IOException {
+	public String writeFile(String url, String nameFile, ResultList resultList) throws IOException {
 		 FileWriter writer = new FileWriter("D:\\hdt\\" + nameFile + ".txt");
 	        BufferedWriter buffer = new BufferedWriter(writer);
-	        buffer.write("Welcome to java.");
+	        StringBuilder str = new StringBuilder("Ket Qua: \n");
+			for(Result r : resultList.getResults()) {
+				str.append(r.getChoose());
+				str.append('\t');
+				str.append(r.getAnsCorrect());
+				str.append('\t');
+				str.append(r.getPoint());
+				str.append('\n');
+				
+			}
+			
+	        buffer.write(str.toString());;
 	        buffer.close();
 	        System.out.println("Success...");
 	        return "";

@@ -92,7 +92,9 @@ public class main {
 						result.setChoose(scanner.nextLine());
 						System.out.println("Dap an dung: " + m.getMultipleAnswer().getAnsCorrect());
 						System.out.println("Giai thich: " + m.getNote());
-
+						if(!result.getChoose().equals(result.getAnsCorrect())) {
+							result.setPoint(0);
+						}
 						resultList.add(result);
 						
 					}
@@ -138,7 +140,9 @@ public class main {
 							result.setPoint(10);
 							result.setChoose(scanner.nextLine());
 							System.out.println("Dap an dung: " + qsub.getAnsCorrect());
-
+							if(!result.getChoose().equals(result.getAnsCorrect())) {
+								result.setPoint(0);
+							}
 							resultList.add(result);
 						}
 					}
@@ -187,7 +191,9 @@ public class main {
 									result.setPoint(10);
 									result.setChoose(scanner.nextLine());
 									System.out.println("Dap an dung: " + qsub.getAnsCorrect());
-
+									if(!result.getChoose().equals(result.getAnsCorrect())) {
+										result.setPoint(0);
+									}
 									resultList.add(result);
 								}
 
@@ -226,7 +232,9 @@ public class main {
 									result.setPoint(10);
 									result.setChoose(scanner.nextLine());
 									System.out.println("Dap an dung: " + qsub.getAnsCorrect());
-
+									if(!result.getChoose().equals(result.getAnsCorrect())) {
+										result.setPoint(0);
+									}
 									resultList.add(result);
 								}
 							}
@@ -236,6 +244,7 @@ public class main {
 				
 				case 4: {
 					StringBuilder str = new StringBuilder("Ket Qua: \n");
+					int point = 0;
 					for(Result r : resultList.getResults()) {
 						str.append(r.getChoose());
 						str.append("\t");
@@ -243,12 +252,14 @@ public class main {
 						str.append("\t");
 						str.append(r.getPoint());
 						str.append("\n");
-						
+						point+=r.getPoint();
 					}
-					
+					str.append("================\n");
+					str.append("Tong diem: " + point);
+
 					StringBuilder url = new StringBuilder(urlRoot);
-										
-					file.writeFile(url.toString(), "test");
+					System.out.println(str);		
+					file.writeFile(url.toString(), "test", resultList);
 				}break;
 				
 					
