@@ -207,16 +207,18 @@ public class HandleFile {
 		 FileWriter writer = new FileWriter("D:\\hdt\\" + nameFile + ".txt");
 	        BufferedWriter buffer = new BufferedWriter(writer);
 	        StringBuilder str = new StringBuilder("Ket Qua: \n");
-			for(Result r : resultList.getResults()) {
+			int point = 0;
+	        for(Result r : resultList.getResults()) {
 				str.append(r.getChoose());
 				str.append('\t');
 				str.append(r.getAnsCorrect());
 				str.append('\t');
 				str.append(r.getPoint());
 				str.append('\n');
-				
+				point+=r.getPoint();
 			}
-			
+	        str.append('\n');
+			str.append("Tong diem: " + point);
 	        buffer.write(str.toString());;
 	        buffer.close();
 	        System.out.println("Success...");
