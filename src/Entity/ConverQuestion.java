@@ -3,23 +3,23 @@ package Entity;
 
 public class ConverQuestion extends Question{
 
-	private ConverQuestionList converAnswerList;
+	protected ConverQuestionSubList converQuestionSubList;
 
 	public ConverQuestion() {
 		super();
 	}
 
-	public ConverQuestion(ConverQuestionList converAnswerList) {
+	public ConverQuestion(ConverQuestionSubList converQuestionSubList) {
 		super();
-		this.converAnswerList = converAnswerList;
+		this.converQuestionSubList = converQuestionSubList;
 	}
 
-	public ConverQuestionList getConverAnswerList() {
-		return converAnswerList;
+	public ConverQuestionSubList getConverQuestionSubList() {
+		return converQuestionSubList;
 	}
 
-	public void setConverAnswerList(ConverQuestionList converAnswerList) {
-		this.converAnswerList = converAnswerList;
+	public void setConverQuestionSubList(ConverQuestionSubList converQuestionSubList) {
+		this.converQuestionSubList = converQuestionSubList;
 	}
 	
 	

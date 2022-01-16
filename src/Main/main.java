@@ -12,10 +12,15 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 import Entity.ConverAnswer;
+import Entity.ConverQuestion;
+import Entity.ConverQuestionList;
+import Entity.IncompleteQuestion;
+import Entity.IncompleteQuestionList;
 import Entity.IncompletedAnswer;
 import Entity.Level;
 import Entity.MultipleAnswer;
 import Entity.MultipleQuestion;
+import Entity.MultipleQuestionList;
 import Entity.Question;
 import Entity.QuestionList;
 import Entity.TypeQuestion;
@@ -38,11 +43,19 @@ public class main {
 		//
 		List<ConverAnswer> listConAns = new ArrayList<ConverAnswer>();
 		List<IncompletedAnswer> listIncomAns = new ArrayList<IncompletedAnswer>();
-		Question mulQues = new MultipleQuestion();
-		Question converQues = new MultipleQuestion();
-		Question incompleQues = new MultipleQuestion();
+		
+		
+		MultipleQuestion mulQues = new MultipleQuestion();
+		ConverQuestion converQues = new ConverQuestion();
+		
+		IncompleteQuestion incompleQues = new IncompleteQuestion();
 		int choose;
-
+		
+		ConverQuestionList listConverQuestion = new ConverQuestionList();
+		IncompleteQuestionList listIncompleteQuestion = new IncompleteQuestionList();
+		MultipleQuestionList listMulQuestion = new MultipleQuestionList();
+		
+		file.writeFile("", "test");
 		do {
 			System.out.print("Choose: ");
 			choose = scanner.nextInt(); 
@@ -58,8 +71,9 @@ public class main {
 					ArrayList<String> urls = file.listFilesForFolder(folder);
 					
 					for(String s : urls) {
-//						System.out.println(s);
-						file.readFile(s);
+						mulQues = file.readFileMul(s);
+						listMulQuestion.add(mulQues);
+						
 					}
 				}break;
 				
@@ -81,7 +95,8 @@ public class main {
 					ArrayList<String> urls = file.listFilesForFolder(folder);
 				
 					for(String s : urls) {
-						file.readFile(s);
+						converQues = file.readFile(s) ;
+						listConverQuestion.add(converQues);
 					}
 
 					}break;
@@ -94,19 +109,37 @@ public class main {
 					System.out.print("level: ");
 					level = scanner.nextInt();
 					switch(level) {
-						case 1: url.append(Level.Easy); break;
-						case 2: url.append(Level.High); break;
+						case 1: {
+							url.append("\\"); 
+							url.append(Level.Easy); 
+							File folder = new File(url.toString());
+
+							ArrayList<String> urls = file.listFilesForFolder(folder);
+
+							for(String s : urls) {
+								incompleQues = file.readFileIncomplete(url.toString());
+								listIncompleteQuestion.add(incompleQues);
+							}
+						}
+						
+						break;
+						case 2: 
+						{
+							url.append("\\"); 
+							url.append(Level.High); 
+							File folder = new File(url.toString());
+	
+							ArrayList<String> urls = file.listFilesForFolder(folder);
+	
+							for(String s : urls) {
+								incompleQues = file.readFileIncomplete(url.toString());
+								listIncompleteQuestion.add(incompleQues);
+							}
+						}break;
 					}
+				}
 					
-					File folder = new File(url.toString());
-
-					ArrayList<String> urls = file.listFilesForFolder(folder);
 				
-					for(String s : urls) {
-						file.readFile(s);
-					}
-
-					}break;
 		    }	
 		    
 		}while(choose!=0);

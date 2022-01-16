@@ -3,23 +3,27 @@ package Entity;
 import java.util.ArrayList;
 
 public class ConverQuestionList {
-	private ArrayList<ConverAnswer> converAnswerList;
+	public ArrayList<ConverQuestion> converQuestionList = new ArrayList<ConverQuestion>();
 
+	public void add(ConverQuestion a) {
+		converQuestionList.add(a);
+	}
+	
 	public ConverQuestionList() {
 		super();
 	}
 
-	public ConverQuestionList(ArrayList<ConverAnswer> converAnswerList) {
+	public ConverQuestionList(ArrayList<ConverQuestion> converQuestionList) {
 		super();
-		this.converAnswerList = converAnswerList;
+		this.converQuestionList = converQuestionList;
 	}
 
-	public ArrayList<ConverAnswer> getConverAnswerList() {
-		return converAnswerList;
+	public ArrayList<ConverQuestion> getConverQuestionList() {
+		return converQuestionList;
 	}
 
-	public void setConverAnswerList(ArrayList<ConverAnswer> converAnswerList) {
-		this.converAnswerList = converAnswerList;
+	public void setConverQuestionList(ArrayList<ConverQuestion> converQuestionList) {
+		this.converQuestionList = converQuestionList;
 	}
 	
 }

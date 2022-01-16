@@ -5,7 +5,9 @@ import java.util.ArrayList;
 public class IncompleteAnswerList {
 	private ArrayList<IncompletedAnswer> incompletedAnswerList;
 
-	
+	public void add (IncompletedAnswer answer) {
+		incompletedAnswerList.add(answer);
+	}
 	public IncompleteAnswerList() {
 		super();
 	}

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionList {
-	private ArrayList<Question> listQuestion = new ArrayList<Question>();
+	public ArrayList<Question> listQuestion = new ArrayList<Question>();
 	
 	public void addQuestion(Question qes) {
 		listQuestion.add(qes);
