@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import Entity.ConverAnswer;
 import Entity.ConverQuestion;
 import Entity.ConverQuestionList;
+import Entity.ConverQuestionSubList;
 import Entity.IncompleteQuestion;
 import Entity.IncompleteQuestionList;
 import Entity.IncompletedAnswer;
@@ -70,17 +71,30 @@ public class main {
 					ArrayList<String> urls = file.listFilesForFolder(folder);
 					
 					for(String s : urls) {
+						mulQues = new MultipleQuestion();
 						mulQues = file.readFileMul(s);
 						listMulQuestion.add(mulQues);
 					}
-					
+					scanner.nextLine();
+
 					for(MultipleQuestion m : listMulQuestion.getMultipleQuestionList()) {
+
+						System.out.println(m.getQuestion());
+						System.out.println(m.getMultipleAnswer().getAnsA());
+						System.out.println(m.getMultipleAnswer().getAnsB());
+						System.out.println(m.getMultipleAnswer().getAnsC());
+						System.out.println(m.getMultipleAnswer().getAnsD());
+
 						System.out.print("Chọn đáp án: ");
 						Result result = new Result();
-						result.setAnsCorrect(m.getAnsCorrect());
+						result.setAnsCorrect(m.getMultipleAnswer().getAnsCorrect());
 						result.setPoint(10);
 						result.setChoose(scanner.nextLine());
+						System.out.println("Dap an dung: " + m.getMultipleAnswer().getAnsCorrect());
+						System.out.println("Giai thich: " + m.getNote());
+
 						resultList.add(result);
+						
 					}
 				}break;
 				
@@ -102,17 +116,31 @@ public class main {
 					ArrayList<String> urls = file.listFilesForFolder(folder);
 				
 					for(String s : urls) {
+						converQues = new ConverQuestion();
 						converQues = file.readFile(s) ;
 						listConverQuestion.add(converQues);
 					}
-					
+					scanner.nextLine();
+
 					for(ConverQuestion m : listConverQuestion.getConverQuestionList()) {
-						System.out.print("Chọn đáp án: ");
-						Result result = new Result();
-						result.setAnsCorrect(m.getAnsCorrect());
-						result.setPoint(10);
-						result.setChoose(scanner.nextLine());
-						resultList.add(result);
+						System.out.println(m.getQuestion());
+						for(ConverAnswer qsub : m.getConverQuestionSubList().getConverQuestionList()) {
+							System.out.println("\n");
+
+							System.out.println(qsub.getSubQues());
+							System.out.println(qsub.getAnsA());
+							System.out.println(qsub.getAnsB());
+							System.out.println(qsub.getAnsC());	
+							System.out.println(qsub.getAnsD());	
+							System.out.print("Chọn đáp án: ");
+							Result result = new Result();
+							result.setAnsCorrect(qsub.getAnsCorrect());
+							result.setPoint(10);
+							result.setChoose(scanner.nextLine());
+							System.out.println("Dap an dung: " + qsub.getAnsCorrect());
+
+							resultList.add(result);
+						}
 					}
 
 					}break;
@@ -133,16 +161,36 @@ public class main {
 							ArrayList<String> urls = file.listFilesForFolder(folder);
 
 							for(String s : urls) {
-								incompleQues = file.readFileIncomplete(url.toString());
+								incompleQues = new IncompleteQuestion();
+
+								incompleQues = file.readFileIncomplete(s);
 								listIncompleteQuestion.add(incompleQues);
 							}
+							scanner.nextLine();
+
 							for(IncompleteQuestion m : listIncompleteQuestion.getIncompleteQuestionList()) {
-								System.out.print("Chọn đáp án: ");
-								Result result = new Result();
-								result.setAnsCorrect(m.getAnsCorrect());
-								result.setPoint(10);
-								result.setChoose(scanner.nextLine());
-								resultList.add(result);
+								System.out.println(m.getQuestion());
+								System.out.println("\n");
+
+								for(IncompletedAnswer qsub : m.getAnswerList().getIncompletedAnswerList()) {
+									System.out.println("\n");
+
+									System.out.println(qsub.getAnsA());
+									System.out.println(qsub.getAnsB());
+									System.out.println(qsub.getAnsC());	
+									System.out.println(qsub.getAnsD());	
+									System.out.print("Chọn đáp án: ");
+									
+
+									Result result = new Result();
+									result.setAnsCorrect(qsub.getAnsCorrect());
+									result.setPoint(10);
+									result.setChoose(scanner.nextLine());
+									System.out.println("Dap an dung: " + qsub.getAnsCorrect());
+
+									resultList.add(result);
+								}
+
 							}
 						}
 						
@@ -154,18 +202,33 @@ public class main {
 							File folder = new File(url.toString());
 	
 							ArrayList<String> urls = file.listFilesForFolder(folder);
-	
+							scanner.nextLine();
+
 							for(String s : urls) {
-								incompleQues = file.readFileIncomplete(url.toString());
+								incompleQues = new IncompleteQuestion();
+								incompleQues = file.readFileIncomplete(s.toString());
 								listIncompleteQuestion.add(incompleQues);
 							}
 							for(IncompleteQuestion m : listIncompleteQuestion.getIncompleteQuestionList()) {
-								System.out.print("Chọn đáp án: ");
-								Result result = new Result();
-								result.setAnsCorrect(m.getAnsCorrect());
-								result.setPoint(10);
-								result.setChoose(scanner.nextLine());
-								resultList.add(result);
+								System.out.println(m.getQuestion());
+								for(IncompletedAnswer qsub : m.getAnswerList().getIncompletedAnswerList()) {
+									System.out.println("\n");
+
+									System.out.println(qsub.getAnsA());
+									System.out.println(qsub.getAnsB());
+									System.out.println(qsub.getAnsC());	
+									System.out.println(qsub.getAnsD());	
+									System.out.print("Chọn đáp án: ");
+									
+
+									Result result = new Result();
+									result.setAnsCorrect(qsub.getAnsCorrect());
+									result.setPoint(10);
+									result.setChoose(scanner.nextLine());
+									System.out.println("Dap an dung: " + qsub.getAnsCorrect());
+
+									resultList.add(result);
+								}
 							}
 						}break;
 					}

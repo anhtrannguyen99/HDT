@@ -3,7 +3,7 @@ package Entity;
 import java.util.ArrayList;
 
 public class IncompleteAnswerList {
-	private ArrayList<IncompletedAnswer> incompletedAnswerList;
+	private ArrayList<IncompletedAnswer> incompletedAnswerList = new ArrayList<IncompletedAnswer>();
 
 	public void add (IncompletedAnswer answer) {
 		incompletedAnswerList.add(answer);

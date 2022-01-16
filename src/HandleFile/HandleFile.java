@@ -45,30 +45,31 @@ public class HandleFile {
             while (line != null) {
                 s.add(line);
                 
-               
-                if(line.equals("/")) {
-                	test.setQuestion(a);
-                	isques = false;
-                    line = bufferedReader.readLine();
+                if(!line.equals("")) {
+                	if(line.equals("/")) {
+                    	test.setQuestion(a);
+                    	isques = false;
+                        line = bufferedReader.readLine();
 
-                }
+                    }
+                    
+                    if(isques && !line.equals("/")) {
+                    	a+=line + "\n" ;
+                    }else {
+                    	ConverAnswer ca = new ConverAnswer();
+                    	ca.setSubQues(line);
+                        ca.setAnsA(bufferedReader.readLine());
+                    	ca.setAnsB(bufferedReader.readLine());
+                    	ca.setAnsC(bufferedReader.readLine());
+                    	ca.setAnsD(bufferedReader.readLine());
+                    	bufferedReader.readLine();
+                    	ca.setAnsCorrect(bufferedReader.readLine());
+                    	bufferedReader.readLine();
+                    	
+                    	list.add(ca);
+                    }
                 
-                if(isques && !line.equals("/")) {
-                	a+=line + "\n" ;
-                }else {
-                	ConverAnswer ca = new ConverAnswer();
-                	ca.setSubQues(line);
-                    ca.setAnsA(bufferedReader.readLine());
-                	ca.setAnsB(bufferedReader.readLine());
-                	ca.setAnsC(bufferedReader.readLine());
-                	ca.setAnsD(bufferedReader.readLine());
-                	bufferedReader.readLine();
-                	ca.setAnsCorrect(bufferedReader.readLine());
-                	bufferedReader.readLine();
-                	
-                	list.add(ca);
                 }
-            
         
                 line = bufferedReader.readLine();
             }
@@ -106,16 +107,19 @@ public class HandleFile {
 
             while (line != null) {
                 s.add(line);
-                test.setQuestion(line);
-                answer.setAnsA(bufferedReader.readLine());
-                answer.setAnsB(bufferedReader.readLine());
-                answer.setAnsC(bufferedReader.readLine());
-                answer.setAnsD(bufferedReader.readLine());
-                bufferedReader.readLine();
-                answer.setAnsCorrect(bufferedReader.readLine());
-            
-                test.setMultipleAnswer(answer);
-                
+                if(!line.equals("")) {
+                    test.setQuestion(line);
+                    answer.setAnsA(bufferedReader.readLine());
+                    answer.setAnsB(bufferedReader.readLine());
+                    answer.setAnsC(bufferedReader.readLine());
+                    answer.setAnsD(bufferedReader.readLine());
+                    bufferedReader.readLine();
+                    answer.setAnsCorrect(bufferedReader.readLine());
+                    
+                    test.setMultipleAnswer(answer);
+                    test.setNote(bufferedReader.readLine());
+                }
+          
                 line = bufferedReader.readLine();
             }
             
@@ -151,30 +155,32 @@ public class HandleFile {
             while (line != null) {
                 s.add(line);
                 
-               
-                if(line.equals("/")) {
-                	test.setQuestion(a);
-                	isques = false;
-                    line = bufferedReader.readLine();
+                if(!line.equals("")) {
 
-                }
-                
-                if(isques && !line.equals("/")) {
-                	a+=line + "\n" ;
-                }else {
-                	IncompletedAnswer ca = new IncompletedAnswer();
-//                	ca.setSubQues(line);
-                    ca.setAnsA(bufferedReader.readLine());
-                	ca.setAnsB(bufferedReader.readLine());
-                	ca.setAnsC(bufferedReader.readLine());
-                	ca.setAnsD(bufferedReader.readLine());
-                	bufferedReader.readLine();
-                	ca.setAnsCorrect(bufferedReader.readLine());
-                	bufferedReader.readLine();
+                	if(line.equals("/")) {
+                    	test.setQuestion(a);
+                    	isques = false;
+                        line = bufferedReader.readLine();
+
+                    }
+                    
+                    if(isques && !line.equals("/")) {
+                    	a+=line + "\n" ;
+                    }else {
+                    	IncompletedAnswer ca = new IncompletedAnswer();
+//                    	ca.setSubQues(line);
+                        ca.setAnsA(bufferedReader.readLine());
+                    	ca.setAnsB(bufferedReader.readLine());
+                    	ca.setAnsC(bufferedReader.readLine());
+                    	ca.setAnsD(bufferedReader.readLine());
+                    	bufferedReader.readLine();
+                    	ca.setAnsCorrect(bufferedReader.readLine());
+                    	bufferedReader.readLine();
+                    	
+                    	list.add(ca);
+                    }
                 	
-                	list.add(ca);
                 }
-            
         
                 line = bufferedReader.readLine();
             }
