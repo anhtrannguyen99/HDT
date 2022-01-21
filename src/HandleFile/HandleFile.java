@@ -225,10 +225,26 @@ public class HandleFile {
 	        return "";
 	}
 	
+	
+	public String writeFileQuestion(String url, String nameFile, ArrayList<String> strQues) throws IOException {
+		 FileWriter writer = new FileWriter(url + nameFile + ".txt");
+	        BufferedWriter buffer = new BufferedWriter(writer);
+	        StringBuilder str = new StringBuilder();
+			int point = 0;
+	       
+			for(String s : strQues) {
+				str.append(s);
+				str.append('\n');
+			}
+	        buffer.write(str.toString());;
+	        buffer.close();
+	        System.out.println("Success...");
+	        return "";
+	}
+	
 	String name="";
 	String muc = "";
 	int count=1;
-//	ArrayList<TypeQuestions> s = new ArrayList<TypeQuestions>();
 
 	public ArrayList<String> listFilesForFolder(final File folder) {
 		ArrayList<String> s = new ArrayList<String>();
