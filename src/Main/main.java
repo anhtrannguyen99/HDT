@@ -75,8 +75,9 @@ public class main {
 
 				ArrayList<String> urls = file.listFilesForFolder(folder);
 
-				System.out.println("Nhap cau hoi: ");
 				ArrayList<String> ques = new ArrayList<String>();
+				ques.add(scanner.nextLine());
+				System.out.println("Nhap cau hoi: ");
 				ques.add(scanner.nextLine());
 				System.out.print("A: ");
 				ques.add("A." + scanner.nextLine());
